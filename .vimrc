@@ -1,29 +1,38 @@
-set nocompatible
-filetype off
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
 
-if has('vim_starting')
-    set nocompatible
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
+" Required:
+set runtimepath^=~/.vim/bundle/neobundle.vim/
+
+" Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'Shougo/neobundle.vim'
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'https://github.com/Shougo/vimfiler.git'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'matchit.zip'
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'itchyny/lightline.vim'
+
 call neobundle#end()
 
-filetype plugin on
-filetype indent on
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
 
 set backspace=indent,eol,start
 
-" syntax on
 set number
 
 set encoding=utf-8
@@ -48,15 +57,3 @@ set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 syntax enable
 set background=dark
 colorscheme solarized
-
-" neocomplcache設定
-autocmd BufRead *.php\|*.ctp\|*.tpl\|*.html :set dictionary=~/.vim/dictionary/php.dict filetype=php
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_manual_completion_start_length = 0
-let g:neocomplcache_caching_percent_in_statusline = 1
-let g:neocomplcache_enable_skip_completion = 1
-let g:neocomplcache_skip_input_time = '0.5'
